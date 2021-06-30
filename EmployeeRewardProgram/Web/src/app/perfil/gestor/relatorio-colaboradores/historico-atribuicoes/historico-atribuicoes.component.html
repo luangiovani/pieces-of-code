@@ -1,0 +1,41 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <table class="table table-bordered table-striped table-hover dataTable">
+                          <thead>
+                              <tr>
+                                  <th> CS </th>
+                                  <th> Colaborador </th>
+                                  <th> Data </th>
+                                  <th> Motivo </th>
+                                  <th> Pontos </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <ng-container *ngFor="let row of dataSource">
+                                  <tr>
+                                      <td>{{ row.cs_colaborador }}</td>
+                                      <td>{{ row.colaborador }}</td>
+                                      <td>{{ row.data }}</td>
+                                      <td>{{ row.tipo_recomendacao }}</td>
+                                      <td>{{ row.qtde_pontos }}</td>
+                                  </tr>
+                              </ng-container>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>

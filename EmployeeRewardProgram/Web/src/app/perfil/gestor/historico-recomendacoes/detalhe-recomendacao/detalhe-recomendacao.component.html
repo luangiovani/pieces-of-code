@@ -1,0 +1,93 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">    
+            <div class="card-body">
+                <div class="card-title border-bottom pb-2">
+                    <h5 class="card-title">
+                        {{ title }}
+                        <button title="Clique para Concluir a Troca" class="btn btn-secondary btnVoltar pull-right" (click)="goback()">Voltar</button>
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md-2">
+                        <h5 class="font-600 m-b-5">Status.:</h5>
+                    </div>
+                    <div class="col-8 col-md-10">
+                        <h5 class=" m-b-5">{{ objRecomendacao.status }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md-2">
+                        <h5 class="font-600 m-b-5">Colaborador.:</h5>
+                    </div>
+                    <div class="col-8 col-md-10">
+                        <h5 class=" m-b-5">{{ objRecomendacao.cs_colaborador + ' ' + objRecomendacao.colaborador }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md-2">
+                        <h5 class="font-600 m-b-5">Gestor.:</h5>
+                    </div>
+                    <div class="col-8 col-md-10">
+                        <h5 class=" m-b-5">{{ objRecomendacao.cs_gestor_colaborador + ' ' + objRecomendacao.gestor_colaborador }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md-2">
+                        <h5 class="font-600 m-b-5">Tipo.:</h5>
+                    </div>
+                    <div class="col-8 col-md-10">
+                        <h5 class=" m-b-5">{{ objRecomendacao.tipo_recomendacao }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md-2">
+                        <h5 class="font-600 m-b-5">Pontos.:</h5>
+                    </div>
+                    <div class="col-8 col-md-10">
+                        <h5 class=" m-b-5">{{ objRecomendacao.qtde_pontos }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md-2">
+                        <h5 class="font-600 m-b-5">Justificativa.:</h5>
+                    </div>
+                    <div class="col-8 col-md-10">
+                        <h5 class=" m-b-5">{{ objRecomendacao.justificativa }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h5 class="font-600 m-b-5">Status das Avaliações.:</h5>
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-bordered table-striped table-hover dataTable">
+                            <thead>
+                                <tr>
+                                    <th> CS </th>
+                                    <th> Avaliador </th>
+                                    <th> Cargo </th>
+                                    <th> Data Avaliação </th>
+                                    <th> Situação </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let row of this.objRecomendacao.avaliacoes">
+                                    <tr>
+                                        <td>{{ row.cs_colaborador_avaliador }}</td>
+                                        <td>{{ row.nome_colaborador_avaliador }}</td>
+                                        <td>{{ row.cargo_avaliador }}</td>
+                                        <td>{{ row.data }}</td>
+                                        <td>{{ row.situacao_avaliacao }}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      

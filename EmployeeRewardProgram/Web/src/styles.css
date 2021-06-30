@@ -1,0 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+.tr-clickable { cursor: pointer; }
+.pull-left { float: left !important; }
+.pull-left-ml-5 { float: left !important; margin-left: 5px !important; }
+.pull-right { float: right !important; }
+.pull-right-mr-5 { float: left !important; margin-right: 5px !important; }

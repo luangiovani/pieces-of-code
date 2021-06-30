@@ -1,0 +1,101 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom pb-2">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-12 border-bottom pb-2 pt-2">
+                        <form class="compra-form" [formGroup]="compraForm">
+                            <div class="row">
+                                <div class="col-1 form-group" title="Quantidade do Produto">
+                                    <label for="nome">Qtde #</label>
+                                    <input type="number" class="form-control" formControlName="qtde" />
+                                </div>
+                                <div class="col-3 form-group">
+                                    <label>Lojas.:</label>
+                                    <select class="form-control" formControlName="lojaId" (change)="obterOpcoesEntrega()">
+                                        <option value="" selected></option>
+                                        <option *ngFor="let loja of lojas" [value]="loja.id">
+                                            {{ loja.nome }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-3 form-group">
+                                    <label>Opção de Entrega.:</label>
+                                    <select class="form-control" formControlName="opcaoEntregaId">
+                                        <option value="" selected></option>
+                                        <option *ngFor="let opcao of opcoesEntrega" [value]="opcao.id">
+                                            {{ opcao.label_colaborador }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="observacoes">Observações</label>
+                                        <textarea rows="5" cols="150" class="form-control" placeholder="Suas Observações, Ex.: Cor Azul, Tamanho G" formControlName="observacoes"></textarea>
+                                        <span class="text-danger">*** Informe suas opções para o produto como:<br />
+                                        Tamanho G, P M... ou Cor ou qualquer característica do produto, ou ainda, suas observações: "Se não tiver azul, pode ser preto ou branco"</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!compraForm.valid">Solicitar</button>
+                                    <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row pt-1">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-7 form-group">
+                                <label for="nome">Nome *</label>
+                                <input disabled="disabled" type="text" class="form-control" placeholder="Nome do Produto" value="{{ objProduto.nome }}">
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label>Disponível?</label>
+                                <select class="form-control" disabled="disabled">
+                                    <option value="Sim" selected>Sim</option>
+                                    <option value="Não">Não</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="valorPontos">Pontos *</label>
+                                <input disabled="disabled" type="number" class="form-control valorPontos" placeholder="Valor em Pontos para o Produto" [value]="objProduto.valor_pontos">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="descricao">Descrição *</label>
+                                    <textarea disabled="disabled" rows="5" cols="150" class="form-control" placeholder="Descrições do Produto" value="{{ objProduto.descricao }}"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="observacoes">Observações</label>
+                                    <textarea disabled="disabled" rows="5" cols="150" class="form-control" placeholder="Observações do Produto" value="{{ objProduto.observacoes }}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="b64Imagem">Imagem</label>
+                            <input type="file" class="dropify" disabled="disabled"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+</div>
+      

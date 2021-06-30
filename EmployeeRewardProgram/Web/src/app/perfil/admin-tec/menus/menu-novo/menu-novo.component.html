@@ -1,0 +1,69 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="menu-form" [formGroup]="menuForm">
+                            <input type="hidden" formControlName="id" value="{{ menuId }}" />
+                            <input type="hidden" formControlName="ativo" value="{{ objMenu.ativo }}" />
+                            <input type="hidden" formControlName="controller" value="{{ objMenu.controller }}" />
+                            <div class="row">
+                              <div class="col-md-2 col-xs 6">
+                                <div class="form-group">
+                                  <label>Aplicação</label>
+                                  <select class="form-control" formControlName="aplicacao_id">
+                                    <option *ngFor="let aplicacao of listAplicacoes" [value]="aplicacao.id | uppercase">
+                                      {{aplicacao.descricao}}
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-5 col-xs 6">
+                                <div class="form-group">
+                                  <label>Menu Superior</label>
+                                  <select class="form-control" formControlName="menu_superior_id">
+                                    <option value=""></option>
+                                    <option *ngFor="let menu of listMenus" [value]="menu.id | uppercase">
+                                      {{ menu.nome }}
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-5 col-xs 6">
+                                <div class="form-group">
+                                  <label>Nome</label>
+                                  <input type="text" class="form-control" formControlName="nome" placeholder="Nome da Opção de Menu" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6 col-xs 6">
+                                <div class="form-group">
+                                  <label>Action (ação no Controller)</label>
+                                  <input type="text" class="form-control" formControlName="acao" placeholder="Ação a executar no Controller" />
+                                </div>
+                              </div>
+                              <div class="col-md-6 col-xs 6">
+                                <div class="form-group">
+                                  <label>Ícone</label>
+                                  <input type="text" class="form-control" formControlName="icone" placeholder="Inserir o class do ícone para esta opção de menu" />
+                                </div>
+                              </div>
+                            </div>
+                            <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!menuForm.valid">Gravar</button>
+                            <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+</div>

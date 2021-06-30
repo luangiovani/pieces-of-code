@@ -1,0 +1,104 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">    
+            <div class="card-body" *ngIf="this.objCompra">
+                <div class="card-title border-bottom pb-2">
+                    <h5 class="card-title">
+                        {{ title }}
+                        <button title="Voltar para Trocas Pendentes" class="btn btn-secondary btnVoltar pull-right" (click)="goback()">Voltar</button>
+                    </h5>
+                </div>
+                <div class="row" *ngIf="(this.objCompra.situacao_compra_id !== enums.SituacaoCompraEnum.Recusada && this.objCompra.situacao_compra_id !== enums.SituacaoCompraEnum.Cancelada)">
+                    <div class="col-12" >
+                        <button *ngIf="(this.objCompra.situacao_compra_id === enums.SituacaoCompraEnum.EmAnaliseDaLoja || this.objCompra.situacao_compra_id === enums.SituacaoCompraEnum.SolicitacaoTroca)" title="Efetivar ***Após separar os Produtos do Colaborador" class="btn btn-primary btnVoltar mr-md-1" (click)="efetivar()">
+                            Efetivar
+                        </button>
+                        <button *ngIf="(this.objCompra.situacao_compra_id === enums.SituacaoCompraEnum.ProdutosRecebidos)" title="Finalizar ***Após realizar a Entrega e/ou envio dos Produtos ao Colaborador" class="btn btn-lighten-secondary mr-md-1" (click)="finalizar()">
+                            Finalizar
+                        </button>
+                        <button *ngIf="(this.objCompra.situacao_compra_id === enums.SituacaoCompraEnum.EmAnaliseDaLoja || this.objCompra.situacao_compra_id === enums.SituacaoCompraEnum.SolicitacaoTroca)" title="Recusar uma Solicitação de Troca" class="btn btn-danger pull-right" (click)="recusar()">
+                            Recusar
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-2">
+                        <h5 class="font-600 m-b-5">Colaborador.:</h5>
+                    </div>
+                    <div class=" col-10">
+                        <h5 class=" m-b-5">{{ objCompra.cs_colaborador + ' ' + objCompra.colaborador }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-2">
+                        <h5 class="font-600 m-b-5">Situação.:</h5>
+                    </div>
+                    <div class=" col-10">
+                        <h5 class=" m-b-5">{{ objCompra.situacao }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-2">
+                        <h5 class="font-600 m-b-5">Data.:</h5>
+                    </div>
+                    <div class=" col-10">
+                        <h5 class=" m-b-5">{{ objCompra.data }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-2">
+                        <h5 class="font-600 m-b-5">Pontos.:</h5>
+                    </div>
+                    <div class=" col-10">
+                        <h5 class=" m-b-5">{{ objCompra.total_pontos }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-2">
+                        <h5 class="font-600 m-b-5">Opção de Entrega.:</h5>
+                    </div>
+                    <div class=" col-3">
+                        <h5 class=" m-b-5">{{ objCompra.label_loja }}</h5>
+                    </div>
+                    <div class=" col-1">
+                        <h5 class="font-600 m-b-5">Loja.:</h5>
+                    </div>
+                    <div class=" col-3">
+                        <h5 class=" m-b-5">{{ objCompra.loja }}</h5>
+                    </div>
+                </div>
+                <div class="row" *ngIf="this.objCompra">
+                    <div class="col-12">
+                        <h5 class="font-600 m-b-5">Produtos.:</h5>
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-bordered table-striped table-hover dataTable">
+                            <thead>
+                                <tr>
+                                    <th> # </th>
+                                    <th> Produto </th>
+                                    <th> Pontos </th>
+                                    <th> Observações </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let row of this.objCompra.items">
+                                    <tr>
+                                        <td>{{ row.ordem }}</td>
+                                        <td>{{ row.nome }}<br />
+                                            <img src="{{ row.imagem }}" width="150px">
+                                        </td>
+                                        <td>{{ row.valor_pontos }}</td>
+                                        <td>{{ row.observacao }}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      

@@ -1,0 +1,53 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-striped table-hover dataTable">
+                            <thead>
+                                <tr>
+                                    <th> # </th>
+                                    <th> Data </th>
+                                    <th> Pontos </th>
+                                    <th data-orderable="false"> Produtos </th>
+                                    <th> Situação </th>
+                                    <th data-orderable="false"> Inf. Complementares </th>
+                                    <th> --- </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let row of dataSource">
+                                    <tr>
+                                        <td>{{ row.sequencial }}</td>
+                                        <td>{{ row.data }}</td>
+                                        <td>{{ row.pontos.toFixed(0) }}</td>
+                                        <td>
+                                            <div *ngFor="let prd of row.items">
+                                                #{{ prd.sequencial }} Nome.: {{ prd.nome }} Pontos.: {{ prd.valor_pontos.toFixed(0) }}<br/>
+                                            </div>
+                                        </td>
+                                        <td>{{ row.situacao }}</td>
+                                        <td>{{ row.informacoes_complementares }}</td>
+                                        <td>
+                                            <button *ngIf="(row.situacao_id === enums.SituacaoCompraEnum.Efetivada)" title="Confirmar o Recebimento do Produto" class="btn btn-icon waves-effect waves-light btn-lighten-secondary mr-2" (click)="receber(row.id, row.sequencial);"> <i class="mdi mdi-gift"></i> </button>
+                                            <button *ngIf="(row.situacao_id === enums.SituacaoCompraEnum.SolicitacaoTroca || row.situacao_id === enums.SituacaoCompraEnum.EmAnaliseDaLoja || row.situacao_id === enums.SituacaoCompraEnum.Efetivada)" title="Cancelar" class="btn btn-icon waves-effect waves-light btn-danger" (click)="cancelar(row.id, row.sequencial);"> <i class="mdi mdi-cancel"></i> </button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+  </div>
+  

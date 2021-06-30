@@ -1,0 +1,96 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+              <div class="row" *ngIf="dashboard">
+                <div class="col-md-1 col-xs-12"></div>
+                <div class="col-md-2 col-xs-12">
+                    <a routerLink="../meus-pontos">
+                        <div class="card-box widget-user border tr-clickable">
+                            <div class="text-center">
+                                <h2 class="font-weight-normal text-primary" data-plugin="counterup">{{ dashboard.recs }}</h2>
+                                <h6>Recomendações</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-2 col-xs-12">
+                    <div class="card-box widget-user border">
+                        <div class="text-center">
+                            <h2 class="font-weight-normal text-success" data-plugin="counterup">{{ dashboard.tkusDisponiveis }}</h2>
+                            <h6>Saldo de Pontos</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-12">
+                    <div class="card-box widget-user border">
+                        <div class="text-center">
+                            <h2 class="font-weight-normal text-primary" data-plugin="counterup">{{ dashboard.tkusRecebidos }}</h2>
+                            <h6>Pontos Recebidos</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-12">
+                    <a routerLink="../minhas-trocas">
+                        <div class="card-box widget-user border">
+                            <div class="text-center">
+                                <h2 class="font-weight-normal text-warning" data-plugin="counterup">{{ dashboard.tkusUtilizados }}</h2>
+                                <h6>Pontos Utilizados</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-2 col-xs-12">
+                    <div class="card-box widget-user border">
+                        <div class="text-center">
+                            <h2 class="font-weight-normal text-danger" data-plugin="counterup">{{ dashboard.aExpirar }}</h2>
+                            <h6>Pontos a Expirar</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 col-xs-12"></div>
+              </div>
+              <div class="row">
+                  <div class="col-12 border">
+                        <h5>Trocas Realizadas</h5>
+                        <table class="table table-bordered table-striped table-hover dataTableTrocas">
+                            <thead>
+                                <tr>
+                                    <th> # </th>
+                                    <th> Data </th>
+                                    <th> Pontos </th>
+                                    <th> Produtos </th>
+                                    <th> Situação </th>
+                                    <th data-orderable="false"> Inf. Complementares </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let row of qtdeTrocas">
+                                    <tr>
+                                        <td>{{ row.sequencial }}</td>
+                                        <td>{{ row.data }}</td>
+                                        <td>{{ row.pontos }}</td>
+                                        <td class="nowrap">
+                                            <div *ngFor="let prd of row.items">
+                                                {{ prd.nome }}<br/>
+                                            </div>
+                                        </td>
+                                        <td>{{ row.situacao }}</td>
+                                        <td>{{ row.informacoes_complementares }}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>

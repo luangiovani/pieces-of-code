@@ -1,0 +1,61 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="taxa-form" [formGroup]="verbaForm">
+                            <input type="hidden" formControlName="id" value="{{ verbaId }}" />
+                            <input type="hidden" formControlName="ativo" value="{{ objVerba.ativo }}" />
+                            <div class="row">
+                              <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label for="csColaborador">Gestor *</label>
+                                      <select class="form-control" formControlName="csColaborador">
+                                        <option value=""></option>
+                                        <option *ngFor="let colab of listColaboradores" [value]="colab.cs">
+                                          {{ colab.nome }}
+                                        </option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="col-md-2">
+                                  <div class="form-group">
+                                      <label for="valorPontos">Pontos *</label>
+                                      <input type="number" class="form-control" placeholder="" formControlName="valorPontos" #valorPontos value="{{ objVerba.valorPontos }}" (blur)="setValor(valorPontos.value)"/>
+                                  </div>
+                              </div>
+                              <div class="col-md-2">
+                                  <div class="form-group">
+                                      <label for="valorMoeda">Valor R$</label>
+                                      <input type="text" class="form-control valorMonetario" placeholder="" formControlName="valorMoeda" #valorMoeda value="{{ objVerba.valorMoeda }}" (blur)="setPontos(valorMoeda.value)"/>
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label for="observacoes">Observações</label>
+                                      <textarea rows="4" cols="150" class="form-control" placeholder="Observações" formControlName="observacoes" value="{{ objVerba.observacoes }}"></textarea>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!verbaForm.valid">Gravar</button>
+                                  <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                              </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+  </div>
+  

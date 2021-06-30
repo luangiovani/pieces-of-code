@@ -1,0 +1,55 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="tipo-recomendacao-form" [formGroup]="tipoRecomendacaoForm">
+                            <input type="hidden" formControlName="id" value="{{ tipoRecomendacaoId }}" />
+                            <input type="hidden" formControlName="ativo" value="{{ objTipoRecomendacao.ativo }}" />
+                            <div class="row">
+                              <div class="col-md-3">
+                                  <div class="form-group">
+                                      <label for="nome">Nome</label>
+                                      <input type="text" class="form-control" placeholder="Nome do Tipo de Recomendação" formControlName="nome" value="{{ objTipoRecomendacao.nome }}">
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label for="descricao">Descrição</label>
+                                      <input type="text" class="form-control" placeholder="Descrição do Tipo de Recomendação" formControlName="descricao" value="{{ objTipoRecomendacao.descricao }}">
+                                  </div>
+                              </div>
+                              <div class="col-md-2">
+                                  <div class="form-group">
+                                      <label for="tipo_pontuacao">Tipo Pontuação</label>
+                                      <select class="form-control" formControlName="tipo_pontuacao">
+                                          <option value="2">Fixa</option>
+                                          <option value="1">Escolha</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div class="form-group">
+                                      <label for="pontos_fixos">Pontos Fixos</label>
+                                      <input type="text" class="form-control" formControlName="pontos_fixos" value="{{ objTipoRecomendacao.pontos_fixos }}">
+                                  </div>
+                              </div>
+                              </div>
+                            <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!tipoRecomendacaoForm.valid">Gravar</button>
+                            <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+  </div>
+  

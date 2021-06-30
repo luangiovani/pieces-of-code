@@ -1,0 +1,427 @@
+﻿@model IntegradorAtendimentosRDStation.Models.IntegradorModel
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Integrador de Atendimentos - RD x SiaWeb</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" id="btnNew">.: Novo :.</button>
+                    </div>
+                    <div class="col-md-10 pull-right">
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <span id="spToogle" class="glyphicon glyphicon-chevron-down pull-left" style="margin-right:15px; cursor:pointer;" data-toggle="collapse" href="#collapsecontent1"></span>
+                                <h4 class="panel-title">.:: API ::.</h4>
+                            </div>
+                            <div id="collapsecontent1" class="panel-body panel-collapse collapse">
+                                @using (Html.BeginForm("GravarAPI", "Home", FormMethod.Post, new { id = "formGravar" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.SEQUENCIAL, new { @id="SEQUENCIAL"})
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.API, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-12">
+                                                        @Html.EditorFor(model => model.API, new { htmlAttributes = new { @class = "form-control", @id = "API" } })
+                                                        @Html.ValidationMessageFor(model => model.API, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.COD_PROJETO_SGE, htmlAttributes: new { @class = "control-label col-md-1" })
+                                                    <div class="col-md-12">
+                                                        @Html.DropDownListFor(model => model.COD_PROJETO_SGE, (SelectList)ViewBag.Projetos, "", new { @class = "form-control input-md", @id = "COD_PROJETO_SGE" })
+                                                        @Html.ValidationMessageFor(model => model.COD_PROJETO_SGE, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.COD_ACAO_SEQ, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-12">
+                                                        @Html.DropDownListFor(model => model.COD_ACAO_SEQ, (SelectList)ViewBag.Acoes, "", new { @class = "form-control input-md", @id = "COD_ACAO_SEQ" })
+                                                        @Html.ValidationMessageFor(model => model.COD_ACAO_SEQ, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.CATEGORIAATENDIMENTO, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-12">
+                                                        @Html.DropDownListFor(model => model.CATEGORIAATENDIMENTO, (SelectList)ViewBag.Categorias, "", new { @class = "form-control input-md", @id = "CATEGORIAATENDIMENTO" })
+                                                        @Html.ValidationMessageFor(model => model.CATEGORIAATENDIMENTO, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TIPOATENDIMENTO, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-12">
+                                                        @Html.DropDownListFor(model => model.TIPOATENDIMENTO, (SelectList)ViewBag.TipoAtendimento, "", new { @class = "form-control input-md", @id = "TIPOATENDIMENTO" })
+                                                        @Html.ValidationMessageFor(model => model.TIPOATENDIMENTO, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.A001_OBS, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                    <div class="col-md-12">
+                                                        @Html.EditorFor(model => model.A001_OBS, new { htmlAttributes = new { @class = "form-control", @id = "A001_OBS" } })
+                                                        @Html.ValidationMessageFor(model => model.A001_OBS, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.ATIVO, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-12">
+                                                        @Html.DropDownListFor(model => model.ATIVO, (SelectList)ViewBag.Status, "", new { @class = "form-control input-md", @id = "ATIVO" })
+                                                        @Html.ValidationMessageFor(model => model.ATIVO, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <dv class="row">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <div class="pull-right">
+                                                        <input type="submit" value="Gravar" class="btn btn-default pull-right" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </dv>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">.:: API's Cadastradas ::.</h4>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-striped dt-responsive nowrap table-hover tabela-listagem" cellspacing="0" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th> API </th>
+                                            <th> Projeto </th>
+                                            <th> Ação </th>
+                                            <th> Conversões </th>
+                                            <th data-orderable="false"> --- </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var API in (IEnumerable<IntegradorAtendimentosRDStation.Models.IntegradorModel>)ViewBag.Integradores)
+                                        {
+                                            string id = "API_" + API.SEQUENCIAL;
+                                            <tr>
+                                                <td>@API.API</td>
+                                                <td>@API.PROJETO</td>
+                                                <td>@API.ACAO</td>
+                                                <td>@API.CONVERSOES</td>
+                                                <td>
+                                                    <span style="cursor:pointer" onclick="getIntegrador('@API.SEQUENCIAL');" title="Editar"><i class="glyphicon glyphicon-edit"></i></span>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row" style="display:none">
+    <div class="col-md-12">
+        <button class="btn btn-success btn-lg" id="btnSend">.: Teste Lead :.</button>
+    </div>
+</div>
+<div class="row" style="display:none">
+    <div class="col-md-12">
+        <button class="btn btn-success btn-lg" id="btnSendConversion">.: Teste Conversao :.</button>
+    </div>
+</div>
+<div class="row" style="">
+    <div class="col-md-12">
+        <button class="btn btn-success btn-lg" id="btnSendContato">.: Teste Contato :.</button>
+    </div>
+</div>
+@section scripts
+{
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#spToogle').click(function () {
+        $(this).toggleClass("glyphicon-chevron-down").toggleClass("glyphicon-chevron-up");
+    });
+
+    $("#btnNew").click(function () {
+        if ($("#collapsecontent1").hasClass("collapse"))
+            $('#spToogle').trigger('click');
+
+        $("#SEQUENCIAL").val('0');
+        $("#API").val('');
+        $("#COD_PROJETO_SGE").val('');
+        $("#COD_ACAO_SEQ").val('');
+        $("#CATEGORIAATENDIMENTO").val('');
+        $("#TIPOATENDIMENTO").val('');
+        $("#A001_OBS").val('');
+        $("#ATIVO").val('');
+    });
+
+    $("#COD_PROJETO_SGE").change(function ()
+    {
+        var def = $.Deferred();
+        $("#COD_ACAO_SEQ").empty();
+        $.ajax({
+            url: '@Url.Action("GetAcoesPorProjeto", "Home")',
+            data: { COD_PROJETO_SGE: $("#COD_PROJETO_SGE").val() },
+            type: 'GET',
+            datatype: 'json',
+            error: function () { def.resolve(); },
+            success: function (data)
+            {
+                var options = "";
+
+                $.each(data.Result, function (i, option) {
+                    options += "<option value='" + option.Cod_ACAO_SEQ + "'>" + option.Nome + "</option>";
+                });
+                $("#COD_ACAO_SEQ").append(options);
+                def.resolve();
+            }
+        });
+    });
+
+    $("#btnSend").click(function (event) {
+        event.preventDefault();
+        var obj = new Object({
+            leads: [
+              {
+                  id: '236280545',
+                  email: 'lazzaronigourmet@yahoo.com.br',
+                  name: 'Eliana lazzarone',
+                  company: null,
+                  job_title: null,
+                  bio: null,
+                  public_url: 'http://rdstation.com.br/leads/public/ec21e135-f607-42a4-af26-138b526f500c',
+                  created_at: '2017-11-27T11:56:24.000-02:00',
+                  opportunity: 'false',
+                  number_conversions: '9',
+                  user: null,
+                  first_conversion: {
+                      content: {
+                          identificador: 'novo-cadastro',
+                          celular: '(21) 981532640',
+                          estado: 'RJ',
+                          cidade: 'Queimados',
+                          Perfil: 'Quero ser empreendedor',
+                          A012_CD_CLI_PF: "2590389",
+                          A012_CD_CLI_PJ: null,
+                          Porte: null,
+                          A261_CD_CONT: "-",
+                          Ramo:null,
+                          created_at: '2017-11-27 13:56:24 UTC',
+                          email_lead:"lazzaronigourmet@yahoo.com.br",
+                          nome: 'Eliana Lazzarone Baita de Almeida',
+
+                          CPF: '42891647068',
+                          
+                          empresa: 'REPRESENTAÇÃO DE SITEMAS DE SEGURANÇA LTDA ME',
+                          CNPJ: '08647005000112',
+                          'Código SIA (PJ)': '482536',
+                          'Código Contato (PJ)': '567306',
+                          'Porte da Empresa': 'ME',
+                          
+                          'Ramo de atividade': 'COMÉRCIO',
+                          
+                          
+                          
+                          email_lead: 'leda.bogado@gmail.com'
+                      },
+                      created_at: '2017-11-16T14:15:10.000-02:00',
+                      cumulative_sum: '1',
+                      source: 'SIA',
+                      conversion_origin: {
+                          source: 'unknown',
+                          medium: 'unknown',
+                          value: null,
+                          campaign: 'unknown',
+                          channel: 'Unknown'
+                      }
+                  },
+                  last_conversion: {
+                      content: {
+                          identificador: 'SIA',
+                          nome: 'LEDAIR MALHEIROS BOGADO ',
+                          CPF: '42891647068',
+                          celular: '(48) 991409278',
+                          empresa: 'REPRESENTAÇÃO DE SITEMAS DE SEGURANÇA LTDA ME',
+                          CNPJ: '08647005000112',
+                          'Código SIA (PJ)': '482536',
+                          'Código Contato (PJ)': '567306',
+                          'Porte da Empresa': 'ME',
+                          Perfil: 'Micro Empresa',
+                          'Ramo de atividade': 'COMÉRCIO',
+                          estado: 'SC',
+                          cidade: 'Blumenau',
+                          created_at: '2017-11-16 16:15:10 UTC',
+                          email_lead: 'leda.bogado@gmail.com'
+                      },
+                      created_at: '2017-11-16T14:15:10.000-02:00',
+                      cumulative_sum: '1',
+                      source: 'SIA',
+                      conversion_origin: {
+                          source: 'unknown',
+                          medium: 'unknown',
+                          value: null,
+                          campaign: 'unknown',
+                          channel: 'Unknown'
+                      }
+                  },
+                  custom_fields: {
+                      'Código Contato (PJ)': '567306',
+                      'Código SIA (PJ)': '482536',
+                      'Ramo de atividade': 'COMÉRCIO',
+                      'Porte da Empresa': 'ME',
+                      CNPJ: '08647005000112',
+                      CPF: '42891647068'
+                  },
+                  website: null,
+                  personal_phone: null,
+                  mobile_phone: '(48) 991409278',
+                  city: 'Blumenau',
+                  state: 'SC',
+                  tags: null,
+                  lead_stage: 'Lead',
+                  last_marked_opportunity_date: null,
+                  uuid: 'fc56dee5-dcc7-40ad-b677-71fec03ae0b4',
+                  fit_score: 'd',
+                  interest: 0
+              }
+            ]
+        });
+
+        $.ajax({
+            url: '/api/webinar',
+            //url: '/Home/Teste',
+            data: JSON.stringify(obj),
+            type: 'POST',
+            contentType: "application/json",
+            error: function () { },
+            success: function (data) {
+                //data = JSON.parse(data);
+                alert(data);
+            }
+        });
+    });
+
+    $("#btnSendConversion").click(function (event) {
+        event.preventDefault();
+        
+        $.ajax({
+            url: 'api/sendconversion/775555/1667954/1297035',
+            //url: '/Home/Teste',
+            //data: JSON.stringify(obj),
+            type: 'GET',
+            contentType: "application/json",
+            error: function () { },
+            success: function (data) {
+                //data = JSON.parse(data);
+                alert(data);
+            }
+        });
+    });
+
+    $("#btnSendContato").click(function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            url: 'api/sendlead/1807932',
+            //url: '/Home/Teste',
+            //data: JSON.stringify(obj),
+            type: 'GET',
+            contentType: "application/json",
+            error: function () { },
+            success: function (data) {
+                //data = JSON.parse(data);
+                alert(data);
+            }
+        });
+    });
+});
+
+    function getIntegrador(SEQUENCIAL)
+    {
+        var def = $.Deferred();
+        $.ajax({
+            url: '@Url.Action("ObterIntegrador", "Home")',
+            data: { id: SEQUENCIAL },
+            type: 'GET',
+            datatype: 'json',
+            error: function () { def.resolve(); },
+            success: function (data) {
+                if (data != null && data != undefined)
+                {
+                    var API = data.Result;
+                    if ($("#collapsecontent1").hasClass("collapse"))
+                        $('#spToogle').trigger('click');
+
+                    $("#SEQUENCIAL").val(API.SEQUENCIAL);
+                    $("#API").val(API.API);
+                    $("#COD_PROJETO_SGE").val(API.COD_PROJETO_SGE);
+                    $.ajax({
+                        url: '@Url.Action("GetAcoesPorProjeto", "Home")',
+                        data: { COD_PROJETO_SGE: API.COD_PROJETO_SGE },
+                        type: 'GET',
+                        datatype: 'json',
+                        async:false,
+                        error: function () { },
+                        success: function (data) {
+                            var options = "";
+
+                            $.each(data.Result, function (i, option)
+                            {
+                                var selected = "";
+                                if (option.Cod_ACAO_SEQ == API.COD_ACAO_SEQ) {
+                                    selected = " selected='selected' ";
+                                }
+                                options += "<option value='" + option.Cod_ACAO_SEQ + "'" + selected + ">" + option.Nome + "</option>";
+                            });
+                            $("#COD_ACAO_SEQ").append(options);
+                        }
+                    });
+                    $("#A001_OBS").val(API.A001_OBS);
+                    $("#ATIVO").val(API.ATIVO);
+                    $("#TIPOATENDIMENTO").val(API.TIPOATENDIMENTO);
+                    $("#CATEGORIAATENDIMENTO").val(API.CATEGORIAATENDIMENTO);
+                }
+                def.resolve();
+            }
+        });
+    }
+</script>
+}

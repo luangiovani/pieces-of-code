@@ -1,0 +1,30 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="meio-form" [formGroup]="meioForm">
+                            <input type="hidden" formControlName="id" value="{{ meioId }}" />
+                            <input type="hidden" formControlName="ativo" value="{{ objMeio.ativo }}" />
+                            <div class="form-group">
+                                <label for="meio-nome">Meio de Compra</label>
+                                <input type="text" class="form-control" placeholder="Nome do Meio de Compra" formControlName="nome" value="{{ objMeio.nome }}">
+                            </div>
+                            <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!meioForm.valid">Gravar</button>
+                            <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+  </div>
+  

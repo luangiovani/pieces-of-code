@@ -1,0 +1,55 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                    <form class="menu-form" [formGroup]="perfilForm">
+                        <input type="hidden" formControlName="id" value="{{ perfilId }}" />
+                        <input type="hidden" formControlName="ativo" value="{{ objPerfil.ativo }}" />
+                        <input id="listaPermissoesMenu" type="hidden" formControlName="listaPermissoesMenu" value="{{ objPerfil.listaPermissoesMenu }}" />
+                        <div class="row">
+                          <div class="col-md-4 col-xs 6">
+                            <div class="form-group">
+                              <label>Nome</label>
+                              <input type="text" class="form-control" formControlName="nome" placeholder="Nome do Perfil" />
+                            </div>
+                          </div>
+                          <div class="col-md-8 col-xs 6">
+                            <div class="form-group">
+                              <label>Descrição</label>
+                              <input type="text" class="form-control" formControlName="descricao" placeholder="Descrição do Perfil" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-8 col-xs 6">
+                            <div class="form-group">
+                              <h5>Opções de Menu</h5>
+                              <p class="text-muted font-13">
+                                  Selecione as opções que este Menu tem acesso.
+                              </p>
+                              <select multiple="multiple" class="multi-select" data-plugin="multiselect">
+                                  <option *ngFor="let menu of listMenus" [value]="menu.id | uppercase"> 
+                                    {{menu.nome}}
+                                  </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!perfilForm.valid">Gravar</button>
+                        <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                    </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>

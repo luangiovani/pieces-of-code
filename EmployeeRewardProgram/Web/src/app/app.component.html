@@ -1,0 +1,111 @@
+<!-- Pre-loader -->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner">Loading...</div>
+    </div>
+</div>
+<!-- End Preloader-->
+<!-- Topbar Start -->
+<div class="navbar-custom" *ngIf="currentUser">
+    <!-- LOGO -->
+    <div class="logo-box">
+        <a routerLink="/" class="logo text-center">
+            <span class="logo-lg">
+                <img src="assets/images/logo.png" alt="" height="75">
+                <!-- <img src="assets/images/logo-dark.png" alt="" height="16"> -->
+                <!-- <span class="logo-lg-text-light">Xeria</span> -->
+            </span>
+            <span class="logo-sm">
+                <!-- <span class="logo-sm-text-dark">X</span> -->
+                <img src="assets/images/logo-sm.png" alt="" height="24">
+                <!-- <img src="assets/images/logo-sm.png" alt="" height="24"> -->
+            </span>
+        </a>
+    </div>
+
+    <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+        <li>
+            <button class="button-menu-mobile disable-btn waves-effect">
+                <i class="fe-menu"></i>
+            </button>
+        </li>
+        <li>
+            <h4 class="page-title-main">{{ currentUser.cs }} - {{ currentUser.nome }}</h4>
+        </li>
+    </ul>
+</div>
+<!-- end Topbar -->
+
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left-side-menu" *ngIf="currentUser">
+
+    <div class="slimscroll-menu">
+
+        <div class="user-box text-center">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a routerLink="/" class="text-muted">
+                        <i class="mdi mdi-home"></i>
+                    </a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a href="javascript:void(0)" class="text-custom" (click)="logout()">
+                        <i class="mdi mdi-power"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+
+            <ul class="metismenu" id="side-menu">
+
+                <ng-template #recursiveList let-list>
+                    <li *ngFor="let item of list">
+                        <ng-template [ngIf]="item.subMenus.length == 0">
+                            <a routerLink="{{ item.acao }}">
+                                <i class="{{ item.icone }}"></i>
+                                <span> {{item.menu_opcao}} </span>
+                            </a>
+                        </ng-template>
+                        <ng-template [ngIf]="item.subMenus && item.subMenus.length > 0">
+                            <a href="javascript: void(0);">
+                                <i class="{{ item.icone }}"></i>
+                                <span> {{item.menu_opcao}} </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li *ngFor="let sub of item.subMenus">
+                                    <a routerLink="{{ sub.acao }}">
+                                        <i class="{{ sub.icone }}"></i>
+                                        <span> {{ sub.menu_opcao }} </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </li>
+                </ng-template>
+                <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: currentUser.menus }"></ng-container>
+            </ul>
+
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->
+
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
+<router-outlet></router-outlet>
+<ngx-ui-loader></ngx-ui-loader>
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->

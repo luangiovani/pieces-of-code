@@ -1,0 +1,49 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <form class="opcao-form" [formGroup]="opcaoForm">
+                          <input type="hidden" formControlName="id" value="{{ opcaoId }}" />
+                          <input type="hidden" formControlName="ativo" value="{{ objOpcao.ativo }}" />
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                  <label for="label">Label *</label>
+                                  <input type="text" class="form-control" placeholder="Texto da Opção" formControlName="label" value="{{ objOpcao.label }}">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                  <label for="labelColaborador">Label Colaborador *</label>
+                                  <input type="text" class="form-control" placeholder="Texto da Opção que aparecerá para o Colaborador" formControlName="labelColaborador" value="{{ objOpcao.label_colaborador }}">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                  <label for="labelLoja">Label Loja *</label>
+                                  <input type="text" class="form-control" placeholder="Texto da Opção que aparecerá para a Loja" formControlName="labelLoja" value="{{ objOpcao.label_loja }}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!opcaoForm.valid">Gravar</button>
+                              <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                            </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>

@@ -1,0 +1,43 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <table class="table table-bordered table-striped table-hover dataTable">
+                          <thead>
+                              <tr>
+                                  <th>#</th>
+                                  <th>Nome</th>
+                                  <th>Situacao</th>
+                                  <th data-orderable="false"> --- </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <ng-container *ngFor="let row of dataSource">
+                                  <tr>
+                                      <td>{{ row.sequencial }}</td>
+                                      <td>{{ row.label }}</td>
+                                      <td>{{ row.ativo ? 'Ativo' : 'Inativo' }}</td>
+                                      <td>
+                                          <button title="Editar" class="btn btn-icon waves-effect waves-light btn-purple mr-1" (click)="editar(row.id);"> <i class="mdi mdi-pencil-outline"></i> </button>
+                                          <button *ngIf="!row.ativo" title="Ativar" class="btn btn-icon waves-effect waves-light btn-success mr-1" (click)="situacao(row.id, row.descricao, 'true');"> <i class="mdi mdi-check-box-outline"></i> </button>
+                                          <button *ngIf="row.ativo" title="Inativar" class="btn btn-icon waves-effect waves-light btn-danger" (click)="situacao(row.id, row.descricao, 'false');"> <i class="mdi mdi-cancel"></i> </button>
+                                      </td>
+                                  </tr>
+                              </ng-container>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>

@@ -1,0 +1,54 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom pb-2">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+              <div class="row">
+                  <div class="col-12 border-bottom pb-2 pt-2">
+                      <form class="compra-form" [formGroup]="compraForm">
+                          <input type="hidden" formControlName="colaborador_id" [value]="objColaborador.id" />
+                          <div class="row">
+                              <div class="col-md-2">
+                                <div class="form-group">
+                                  <label for="colaborador_cs">CS</label>
+                                  <input type="text" formControlName="colaborador_cs" class="form-control" [value]="objColaborador.cs" placeholder="Informe o CS" />
+                                </div>
+                              </div>
+                              <div class="col-md-1">
+                                  <div class="form-group">
+                                      <label>Buscar</label>
+                                      <button class="btn btn-icon waves-effect waves-light btn-success" (click)="obterColaborador()"> <i class="mdi mdi-magnify"></i> </button>
+                                  </div>
+                              </div>
+                              <div class="col-md-2">
+                                <div class="form-group">
+                                  <label for="colaborador_pontos">Pontos</label>
+                                  <input type="number" formControlName="colaborador_pontos" class="form-control" [value]="objColaborador.quantidade_pontos" />
+                                </div>
+                              </div>
+                              <div class="col-md-7">
+                                <div class="form-group">
+                                  <label for="colaborador_nome">Nome</label>
+                                  <input type="text" formControlName="colaborador_nome" class="form-control" [value]="objColaborador.nome" />
+                                </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-12">
+                                  <button class="btn btn-primary mr-1" (click)="prosseguir()">Proseguir</button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>
+    

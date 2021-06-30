@@ -1,0 +1,32 @@
+﻿@model IntegradorAtendimentosRDStation.Models.UsuarioModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Access/_LayoutExterno.cshtml";
+}
+
+<div class="login-box-body">
+    @using (Html.BeginForm("Login", "Access", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        <p class="login-box-msg">Acesso ao Portal de Gerenciamento do Integrador RD</p>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Login, new { @class = "form-control", PlaceHolder = "Login" })
+            @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.PasswordFor(m => m.Senha, new { @class = "form-control", PlaceHolder = "Senha" })
+            @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
+        </div>
+        <div class="row">
+            <div class="col-xs-4 pull-right">
+                <button type="submit" class="btn btn-success btn-block btn-flat">Entrar</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

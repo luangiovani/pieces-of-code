@@ -1,0 +1,141 @@
+﻿@model IntegradorAtendimentosRDStation.Models.FiltroLeadsParticipacoesEventosModel
+@{
+    ViewBag.Title = "Leads Participacoes";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Leads - Participantes em Eventos - RD x SiaWeb</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <span id="spToogle" class="glyphicon glyphicon-chevron-up pull-left" style="margin-right:15px; cursor:pointer;" data-toggle="collapse" href="#collapsecontent1"></span>
+                                <h4 class="panel-title">.:: Filtros ::.</h4>
+                            </div>
+                            <div id="collapsecontent1">
+                                @using (Html.BeginForm("LeadsParticipacoes", "Home", FormMethod.Post, new { id = "formGravar" }))
+                                {
+                                    <div class="panel-body">
+                                        <div class="form-horizontal">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.dataDe)
+                                                    <div class="input-group date shortDate">
+                                                        @Html.EditorFor(model => model.dataDe, new { htmlAttributes = new { @class = "form-control" } })
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn default date-set">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.dataAte)
+                                                    <div class="input-group date shortDate">
+                                                        @Html.EditorFor(model => model.dataAte, new { htmlAttributes = new { @class = "form-control" } })
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn default date-set">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @Html.LabelFor(model => model.codTituloEvento)
+                                                    @Html.DropDownListFor(model => model.codTituloEvento, (SelectList)ViewBag.Titulos, "", new { @class = "form-control input-md" })
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @Html.LabelFor(model => model.emailParticipante)
+                                                    @Html.EditorFor(model => model.emailParticipante, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @Html.LabelFor(model => model.A012_CD_CLI)
+                                                    @Html.EditorFor(model => model.A012_CD_CLI, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @Html.LabelFor(model => model.A261_CD_CONT)
+                                                    @Html.EditorFor(model => model.A261_CD_CONT, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @Html.LabelFor(model => model.eventoSIA)
+                                                    @Html.EditorFor(model => model.eventoSIA, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2">
+                                                <div class="pull-right">
+                                                    <input type="submit" value="Pesquisar" class="btn btn-default pull-right" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span id="spToogle2" class="glyphicon glyphicon-chevron-up pull-left" style="margin-right:15px; cursor:pointer;" data-toggle="collapse" href="#collapsecontent2"></span>
+                                <h4 class="panel-title">.:: Listagem: Leads - Participantes em Eventos ::.</h4>
+                            </div>
+                            <div id="collapsecontent2" class="panel-body">
+                                <table class="table table-striped dt-responsive nowrap table-hover tabela-listagem" cellspacing="0" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th> Data Envio </th>
+                                            <th> Titulo </th>
+                                            <th> Evento </th>
+                                            <th> Email </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var LeadEnviado in Model.LeadsParticipantes)
+                                        {
+                                            <tr>
+                                                <td>@LeadEnviado.DataEnvio.ToString("dd/MM/yyyy HH:mm")</td>
+                                                <td>@(LeadEnviado.codTituloEventoEnviado +" - " + LeadEnviado.nomeTituloEventoEnviado)</td>
+                                                <td>@LeadEnviado.A022_CD_EV</td>
+                                                <td>@LeadEnviado.emailEnviado</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+        $('#spToogle').click(function () {
+            $(this).toggleClass("glyphicon-chevron-down").toggleClass("glyphicon-chevron-up");
+        });
+
+        $('#spToogle2').click(function () {
+            $(this).toggleClass("glyphicon-chevron-down").toggleClass("glyphicon-chevron-up");
+        });
+
+        $.fn.datepicker.defaults.language = 'pt-BR';
+
+        $('.shortDate').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true
+        });
+    });
+    </script>
+}

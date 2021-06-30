@@ -1,0 +1,30 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="situacao-compra-form" [formGroup]="situacaoCompraForm">
+                            <input type="hidden" formControlName="id" value="{{ situacaoCompraId }}" />
+                            <input type="hidden" formControlName="ativo" value="{{ objSituacaoCompra.ativo }}" />
+                            <div class="form-group">
+                                <label for="meio-nome">Descrição</label>
+                                <input type="text" class="form-control" placeholder="Descrição da Situação de Compra" formControlName="descricao" value="{{ objSituacaoCompra.descricao }}">
+                            </div>
+                            <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!situacaoCompraForm.valid">Gravar</button>
+                            <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+  </div>
+  

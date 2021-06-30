@@ -1,0 +1,70 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="cfgExpiracao-form" [formGroup]="cfgExpiracaoForm">
+                            <input type="hidden" formControlName="id" value="{{ objcfgExpiracao.id }}" />
+                            <input type="hidden" formControlName="ativo" value="{{ objcfgExpiracao.ativo }}" />
+                            <div class="row">
+                              <div class="col-md-3" title="Tempo de Expiração">
+                                <div class="form-group">
+                                    <label for="qtdeExpiracao">Tempo</label>
+                                    <input type="number" class="form-control" formControlName="qtdeExpiracao" value="{{ objcfgExpiracao.qtde_expiracao }}" />
+                                </div>
+                              </div>
+                              <div class="col-md-3" title="Unidade de Tempo de Expiração">
+                                <div class="form-group">
+                                    <label for="tipoExpiracao">Unidade</label>
+                                    <select class="form-control" formControlName="tipoExpiracao">
+                                        <option value=""></option>
+                                        <option value="H">Horas</option>
+                                        <option value="D">Dias</option>
+                                        <option value="S">Semanas</option>
+                                        <option value="M">Meses</option>
+                                        <option value="A">Anos</option>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="col-md-3" title="Tempo de Expiração Quando Desligado">
+                                <div class="form-group">
+                                    <label for="qtdeExpiracaoDesligamento">Tempo (Após Demissão)</label>
+                                    <input type="number" class="form-control" formControlName="qtdeExpiracaoDesligamento" value="{{ objcfgExpiracao.qtde_expiracao_desligamento }}" />
+                                </div>
+                              </div>
+                              <div class="col-md-3" title="Unidade de Tempo de Expiração">
+                                <div class="form-group">
+                                    <label for="tipoExpiracaoDesligamento">Unidade</label>
+                                    <select class="form-control" formControlName="tipoExpiracaoDesligamento">
+                                        <option value=""></option>
+                                        <option value="H">Horas</option>
+                                        <option value="D">Dias</option>
+                                        <option value="S">Semanas</option>
+                                        <option value="M">Meses</option>
+                                        <option value="A">Anos</option>
+                                    </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!cfgExpiracaoForm.valid">Gravar</button>
+                                <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                              </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+  </div>
+  

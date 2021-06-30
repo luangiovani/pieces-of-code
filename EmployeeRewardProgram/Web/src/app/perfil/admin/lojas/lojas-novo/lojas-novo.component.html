@@ -1,0 +1,65 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <form class="lojas-form" [formGroup]="lojasForm">
+                          <input type="hidden" formControlName="id" value="{{ lojaId }}" />
+                          <input type="hidden" formControlName="ativo" value="{{ objLoja.ativo }}" />
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="nome">Nome *</label>
+                                <input type="text" class="form-control" placeholder="Nome da Loja" formControlName="nome" value="{{ objLoja.nome }}">
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="statusLoja">Status</label>
+                                <input type="text" class="form-control" placeholder="Status da Loja" formControlName="statusLoja" value="{{ objLoja.status_loja }}">
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                <label for="codigo">Código</label>
+                                <input type="text" class="form-control" placeholder="Código da Loja" formControlName="codigo" value="{{ objLoja.codigo }}">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="observacao">Observações</label>
+                                <input type="text" class="form-control" placeholder="Observações para a Loja" formControlName="observacao" value="{{ objLoja.observacao }}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-8">
+                              <div class="form-group">
+                                <label for="localizacao">Localização *</label>
+                                <input type="text" class="form-control" placeholder="Localização da Loja" formControlName="localizacao" value="{{ objLoja.localizacao }}">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="complemento">Complemento</label>
+                                <input type="text" class="form-control" placeholder="Complemento da Loja" formControlName="complemento" value="{{ objLoja.complemento }}">
+                              </div>
+                            </div>
+                          </div>
+                          <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!lojasForm.valid">Gravar</button>
+                          <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>

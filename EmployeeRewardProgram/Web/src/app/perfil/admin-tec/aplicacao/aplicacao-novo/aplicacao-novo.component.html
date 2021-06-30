@@ -1,0 +1,29 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="aplicacao-form" [formGroup]="aplicacaoForm">
+                            <input type="hidden" formControlName="id" value="{{ aplicacaoId }}" />
+                            <input type="hidden" formControlName="ativo" value="{{ objAplicacao.ativo }}" />
+                            <div class="form-group">
+                                <label for="aplicacao-descricao">Aplicação</label>
+                                <input type="text" class="form-control" placeholder="Nome da Aplicação" formControlName="descricao" value="{{ objAplicacao.descricao }}">
+                            </div>
+                            <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!aplicacaoForm.valid">Gravar</button>
+                            <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+</div>

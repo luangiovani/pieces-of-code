@@ -1,0 +1,49 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <form class="taxa-form" [formGroup]="taxaForm">
+                          <input type="hidden" formControlName="id" value="{{ taxaId }}" />
+                          <input type="hidden" formControlName="ativo" value="{{ objTaxa.ativo }}" />
+                          <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="nome">Nome *</label>
+                                    <input type="text" class="form-control" placeholder="Nome da Taxa" formControlName="nome" value="{{ objTaxa.nome }}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="taxa">Taxa *</label>
+                                    <input type="number" class="form-control" placeholder="" formControlName="taxa" value="{{ objTaxa.fator }}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="valor_moeda">Valor R$</label>
+                                    <input type="text" class="form-control valorMonetario" placeholder="" formControlName="valor_moeda" value="{{ objTaxa.valor_moeda }}"/>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!taxaForm.valid">Gravar</button>
+                                <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                            </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>

@@ -1,0 +1,46 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom pb-2">
+                    <h5 class="card-title">
+                        {{ title }}
+                        <!-- <button class="btn btn-icon waves-effect btn-lighten-dark float-right mb-0">
+                            <i class="mdi mdi-cart noti-icon"> <span class="badge badge-danger rounded-circle noti-icon-badge">1</span></i>
+                        </button> -->
+                    </h5>
+                </div>
+                <div class="row">
+                    <ng-container *ngFor="let row of dataSource">
+                        <div class="col-md-4 col-xs-12">
+                            <div class="card border">
+                                <div class="card-body border-bottom">
+                                    <h4 class="card-title">{{ row.nome }}</h4>
+                                    <h5 class="card-subtitle text-muted">Pontos.: {{ row.valor_pontos }}</h5>
+                                </div>
+                                <div class="card-body text-center border-bottom" style="height: 160px !important;">
+                                    <img class="img-fluid" src="{{ row.b64_imagem }}" width="150">
+                                </div>
+                                <div class="card-body border-bottom">
+                                    <p class="card-text">{{ row.descricao }}</p>
+                                    <p class="card-text">{{ row.observacao }}</p>
+                                </div>
+                                <div class="card-body text-center">
+                                    <ng-template [ngIf]="(objColaborador.quantidade_pontos >= row.valor_pontos)">
+                                        <button title="Solicitar Troca" class="btn btn-icon waves-effect waves-light btn-purple mr-1" (click)="solicitar(row.id, row.valor_pontos);"> <i class="mdi mdi-trophy-award"></i> Solicitar Troca</button>
+                                    </ng-template>
+                                    <ng-template [ngIf]="(objColaborador.quantidade_pontos < row.valor_pontos)">
+                                        <button title="Não é possível Solicitar a Troca" class="btn btn-icon waves-effect waves-light btn-dark disabled"> <i class="mdi mdi-trophy-award"></i> Pontos Insuficientes</button>
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+  </div>
+  

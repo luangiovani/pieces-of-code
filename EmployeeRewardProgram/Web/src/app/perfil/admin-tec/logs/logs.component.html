@@ -1,0 +1,71 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+            <form class="logs-form" [formGroup]="logsForm">
+                <input type="hidden" formControlName="dataInicial" />
+                <input type="hidden" formControlName="dataFinal" />
+              <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="dataInicial">De.:</label>
+                        <div class="input-group">
+                            <input type="text" class="dataInicial datepicker form-control" #dataInicial placeholder="dd/mm/yyyy" (blur)="setDtIni(dataInicial.value)"/>
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="ti-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="dataFinal">Até.:</label>
+                        <div class="input-group">
+                            <input type="text" class="dataFinal datepicker form-control" #dataFinal placeholder="dd/mm/yyyy" (blur)="setDtFim(dataFinal.value)"/>
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="ti-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Operação</label>
+                        <select class="form-control" formControlName="operacao">
+                            <option value="" selected></option>
+                            <option *ngFor="let oper of listOperacoes" [value]="oper">
+                            {{oper}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="observacoes">Aplicação</label>
+                        <textarea class="form-control" placeholder="Contendo o texto..." formControlName="observacoes"></textarea>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary mr-1" (click)="buscarLogs()">Buscar</button>
+                </div>
+              </div>
+            </form>
+              <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-striped table-hover dataTable"></table>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>
+

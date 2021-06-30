@@ -1,0 +1,49 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }} || Meu Saldo de Pontos.: {{ objSaldoPontos.qtde_verba }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-striped table-hover dataTable">
+                            <thead>
+                                <tr>
+                                    <th> CS </th>
+                                    <th> Nome </th>
+                                    <th> Cargo </th>
+                                    <th> Pontos </th>
+                                    <th> --- </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let row of dataSource">
+                                    <tr>
+                                        <td>{{ row.cs }}</td>
+                                        <td>{{ row.nome }}</td>
+                                        <td>{{ row.cargo }}</td>
+                                        <td>{{ row.pontos }}</td>
+                                        <td>
+                                            <button title="Reconhecer" class="btn btn-icon waves-effect waves-light btn-success mr-1" (click)="reconhecer(row.cs, row.nome);"> <i class="mdi mdi-check-box-outline"></i> </button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+  </div>
+  

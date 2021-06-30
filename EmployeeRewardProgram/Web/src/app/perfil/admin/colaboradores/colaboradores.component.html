@@ -1,0 +1,45 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-striped table-hover dataTable">
+                            <thead>
+                                <tr>
+                                    <th>CS</th>
+                                    <th>Nome</th>
+                                    <th>Cargo</th>
+                                    <th>Perfil</th>
+                                    <th>UO</th>
+                                    <th>Alterar Perfil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let row of dataSource">
+                                    <tr>
+                                        <td>{{ row.cs }}</td>
+                                        <td>{{ row.nome }}</td>
+                                        <td>{{ row.cargo }}</td>
+                                        <td>{{ row.perfil }}</td>
+                                        <td>{{ row.UO }}</td>
+                                        <td>
+                                            <button title="Editar" class="btn btn-icon waves-effect waves-light btn-purple mr-1" (click)="mudarPerfil(row.id, row.nome, row.perfil_id, row.perfil);"> <i class="mdi mdi-pencil-outline"></i> </button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+</div>

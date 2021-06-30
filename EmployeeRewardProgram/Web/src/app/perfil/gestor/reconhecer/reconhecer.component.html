@@ -1,0 +1,91 @@
+<div class="content-page">
+    <div class="content mt-2">
+        <!-- Start Content-->
+        <div class="card">        
+            <div class="card-body">
+                <div class="card-title border-bottom">
+                    <h5 class="card-title">
+                        {{ title }} || Meu Saldo de Pontos.: {{ objSaldoPontos.qtde_verba }}
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="reconhecer-form" [formGroup]="reconhecerForm">
+                            <input type="hidden" formControlName="cs" value="{{ csColaborador }}" />
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="nome">CS.:</label>
+                                        <input type="text" class="form-control" disabled value="{{ objColaborador.cs }}" />
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control" formControlName="nome" value="{{ objColaborador.nome }}" />
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="nome">Cargo</label>
+                                        <input type="text" class="form-control" formControlName="cargo" value="{{ objColaborador.cargo }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="tipoRecomendacao">Tipo Recomendação</label>
+                                        <select class="form-control" formControlName="tipoRecomendacao" (change)="changeTipo()">
+                                            <option value=""></option>
+                                            <option *ngFor="let tipo of tipoRecomendacao" [value]="tipo.id | uppercase">{{ tipo.nome }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <h4 class="header-title">Pontos</h4>
+                                    <div class="row mt-3 pl-2">
+                                        <div class="col custom-control custom-radio">
+                                            <input type="radio" formControlName="pontosRecomendacao" name="pontosRecomendacao" id="pontosRecomendacao_1" [value]="100" class="custom-control-input">
+                                            <label class="custom-control-label" for="pontosRecomendacao_1">100</label>
+                                        </div>
+                                        <div class="col custom-control custom-radio">
+                                            <input type="radio" formControlName="pontosRecomendacao" name="pontosRecomendacao" id="pontosRecomendacao_2" [value]="300" class="custom-control-input">
+                                            <label class="custom-control-label" for="pontosRecomendacao_2">300</label>
+                                        </div>
+                                        <div class="col custom-control custom-radio">
+                                            <input type="radio" formControlName="pontosRecomendacao" name="pontosRecomendacao" id="pontosRecomendacao_3" [value]="500" class="custom-control-input">
+                                            <label class="custom-control-label" for="pontosRecomendacao_3">500</label>
+                                        </div>
+                                        <div class="col custom-control custom-radio">
+                                            <input type="radio" formControlName="pontosRecomendacao" name="pontosRecomendacao" id="pontosRecomendacao_4" [value]="1000" class="custom-control-input">
+                                            <label class="custom-control-label" for="pontosRecomendacao_4">1000</label>
+                                        </div>
+                                        <div class="col custom-control custom-radio">
+                                            <input type="radio" formControlName="pontosRecomendacao" name="pontosRecomendacao" id="pontosRecomendacao_5" [value]="2000" class="custom-control-input">
+                                            <label class="custom-control-label" for="pontosRecomendacao_5">2000</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="descricao">Justificativa</label>
+                                        <textarea rows="4" cols="150" class="form-control" placeholder="Justificativa para Recomendação" formControlName="justificativa"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!reconhecerForm.valid">Gravar</button>
+                                  <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                              </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+  </div>
+  

@@ -1,0 +1,67 @@
+<div class="content-page">
+  <div class="content mt-2">
+      <!-- Start Content-->
+      <div class="card">        
+          <div class="card-body">
+              <div class="card-title border-bottom">
+                  <h5 class="card-title">
+                      {{ title }}
+                  </h5>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <form class="cfgVerbas-form" [formGroup]="cfgVerbasForm">
+                          <input type="hidden" formControlName="id" value="{{ objcfgVerbas.id }}" />
+                          <input type="hidden" formControlName="ativo" value="{{ objcfgVerbas.ativo }}" />
+                          <div class="row">
+                            <div class="col-md-2" title="Quantidade mínima de Pontos para os Gestores">
+                              <div class="form-group">
+                                  <label for="label">Min. Pontos</label>
+                                  <input type="number" class="form-control" formControlName="minPontos" value="{{ objcfgVerbas.pontos_minimos }}" />
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                  <label for="pontosPorColaborador" title="Quantidade mínima de Pontos para os Gestores por Colaborador de sua Área">Pontos Por Colaborador</label>
+                                  <input type="number" class="form-control" formControlName="pontosPorColaborador" value="{{ objcfgVerbas.pontos_por_colaborador }}" />
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                  <label for="pontosPorArea" title="Quantidade mínima de Pontos para os Gestores por Área">Pontos Por Área</label>
+                                  <input type="number" class="form-control" formControlName="pontosPorArea" value="{{ objcfgVerbas.pontos_por_area }}" />
+                              </div>
+                            </div>
+                            <div class="col-md-2 form-group" title="Data que a configuração passa a ser aplicada">
+                              <label for="dataDisponibilidade">Disponibilidade</label>
+                              <div class="input-group">
+                                  <input type="text" class="datepicker form-control" #dataDisponibilidade placeholder="dd/mm/yyyy" (blur)="setDateDisponibilidade(dataDisponibilidade.value)" [value]="objcfgVerbas.dt_disponivel"/>
+                                  <div class="input-group-append">
+                                      <span class="input-group-text"><i class="ti-calendar"></i></span>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col-md-2 form-group" title="Data de bloqueio para a configuração">
+                              <label for="dataBloqueio">Bloqueio</label>
+                              <div class="input-group">
+                                  <input type="text" class="datepicker form-control" #dataBloqueio placeholder="dd/mm/yyyy" (blur)="setDateBloqueio(dataBloqueio.value)" [value]="objcfgVerbas.dt_bloquear"/>
+                                  <div class="input-group-append">
+                                      <span class="input-group-text"><i class="ti-calendar"></i></span>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <button class="btn btn-primary mr-1" (click)="confirmar()" [disabled]="!cfgVerbasForm.valid">Gravar</button>
+                              <button class="btn btn-secondary btnVoltar" (click)="goback()">Voltar</button>
+                            </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- content -->
+</div>
