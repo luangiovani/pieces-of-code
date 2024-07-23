@@ -1,5 +1,4 @@
-# My Portifolio
-UNDER CONSTRUCTION
+# Some coding examples
 Here I have some pieces of code.
 
 ## Note
